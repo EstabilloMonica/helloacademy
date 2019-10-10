@@ -1,4 +1,5 @@
-﻿using HelloAcademy.Utils;
+﻿using HelloAcademy.Entities;
+using HelloAcademy.Utils;
 using System;
 
 namespace HelloAcademy
@@ -14,36 +15,44 @@ namespace HelloAcademy
             //1) Parte il programma
 
             //2) Mostrare un menu utente
-            Console.WriteLine("**************************");
-            Console.WriteLine("*** HELLO ACADEMY MENU ***");
-            Console.WriteLine("**************************");
-            Console.WriteLine("");
-            Console.WriteLine("* 1 - Divisione");
-            Console.WriteLine("* 2 - Rubrica semplice");
-            Console.WriteLine("* 3 - Rubrica complessa");
-            Console.WriteLine("* 0 - Exit");
-            Console.Write("* Selezione: ");
-            var selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(1, 3);
+            
+           
+
+            //creo una variabile di controllo
+            bool verifica = false;
 
             //Selezione della funzione da avviare
-            switch (selezione) 
+            do
             {
-                case 1:
-                    FunzioniMatematiche.RecuperaDivisioneEDividendoEDividi();
-                    break;
-                case 2:
-                    FunzioniRubrica.InserisciPersoneEMostraRubrica();
-                    break;
-                case 3:
-                    FunzioniRubrica.InserisciNumeroArbitrarioPersoneInRubrica();
-                    break;
-                case 0:
-                    Console.WriteLine("Uscita....");
-                    break;
-                default:
-                    Console.WriteLine("Selezione non valida");
-                    break;
+                menu.mostraMenu();
+                var selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(0, 3);
+                switch (selezione)
+                {
+                    case 1:
+                        FunzioniMatematiche.RecuperaDivisioneEDividendoEDividi();
+                        verifica = true;
+                        break;
+                    case 2:
+                        FunzioniRubrica.InserisciPersoneEMostraRubrica();
+                        verifica = true;
+                        break;
+                    case 3:
+                        FunzioniRubrica.InserisciNumeroArbitrarioPersoneInRubrica();
+                        verifica = true;
+                        break;
+                    case 0:
+                        Console.WriteLine("Uscita....");                        
+                        verifica = false;
+                        break;
+                    default:
+                        Console.WriteLine("Selezione non valida");
+                        break;
+                }
             }
+            while (verifica == true);
+
+            
+           
 
             //3) Se premo 1, parte "RecuperaDivisioneEDividendoEDividi"
 
@@ -59,5 +68,7 @@ namespace HelloAcademy
             //FunzioniRubrica.InserisciNumeroArbitrarioPersoneInRubrica();
 
         }
+
+        
     }    
 }
